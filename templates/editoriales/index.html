@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}EDITORIALES{% endblock %}
+
+{% block content %}
+<div class="container mt-4" style="max-width: 900px;">
+  <h1 class="text-center mb-4">Lista de Editoriales</h1>
+  <a href="{{ url_for('editorial.create') }}" class="btn btn-success mb-3">➕ Nueva Editorial</a>
+
+  <table class="table table-striped table-bordered text-center mx-auto">
+    <thead class="table-dark"> 
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Teléfono</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in editoriales %}
+      <tr>
+        <td>{{ item.id_editorial }}</td>
+        <td>{{ item.nombre }}</td>
+        <td>{{ item.direccion }}</td>
+        <td>{{ item.telefono }}</td>
+        <td>
+          <a href="{{ url_for('editorial.edit', id_editorial=item.id_editorial) }}" class="btn btn-warning btn-sm me-1">Editar</a>
+          <a href="{{ url_for('editorial.delete', id_editorial=item.id_editorial) }}" 
+             class="btn btn-danger btn-sm"
+             onclick="return confirm('¿Estás seguro de que deseas eliminar la editorial {{ item.nombre }}?');">
+            Eliminar
+          </a>
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="5" class="text-center">No hay editoriales registradas.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

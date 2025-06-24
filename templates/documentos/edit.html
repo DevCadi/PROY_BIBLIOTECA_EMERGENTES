@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}DOCUMENTOS{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2>🛠️ Editar Documento</h2>
+    <form action="{{ url_for('documentos.editar', id=documento.id) }}" method="POST" enctype="multipart/form-data">
+      <div class="mb-3 bg-white-glass">
+        <label class="form-label">Material:</label>
+        <select class="form-select" name="id_material">
+          {% for material in materiales %}
+            <option value="{{ material.id_material }}" {% if material.id_material == documento.id_material %}selected{% endif %}>
+              {{ material.titulo }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-3 bg-white-glass">
+        <label class="form-label">Reemplazar PDF (opcional):</label>
+        <input type="file" name="archivo" class="form-control" accept="application/pdf">
+      </div>
+      <button class="btn btn-success">Guardar Cambios</button>
+      <a href="{{ url_for('documentos.index') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+  </div>
+  {% endblock %}

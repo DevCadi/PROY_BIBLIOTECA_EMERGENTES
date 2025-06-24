@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}DONADORES{% endblock %}
+
+{% block content %}
+<div class="container mt-4 " style="max-width: 900px;">
+  <h1 class="text-center mb-4">📋 Lista de Donadores</h1>
+  <a href="{{ url_for('donador.create') }}" class="btn btn-success mb-3">➕ Nuevo Donador</a>
+
+  <table class="table table-striped table-bordered text-center mx-auto">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Teléfono</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for d in donadores %}
+      <tr>
+        <td>{{ d.id_donador }}</td>
+        <td>{{ d.nombre }}</td>
+        <td>{{ d.apellido }}</td>
+        <td>{{ d.telefono }}</td>
+        <td>
+          <a href="{{ url_for('donador.edit', id=d.id_donador) }}" class="btn btn-primary btn-sm me-1">Editar</a>
+          <a href="{{ url_for('donador.delete', id=d.id_donador) }}" class="btn btn-danger btn-sm"
+             onclick="return confirm('¿Estás seguro de eliminar este donador?');">
+            Eliminar
+          </a>
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="5" class="text-center">No hay donadores registrados.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

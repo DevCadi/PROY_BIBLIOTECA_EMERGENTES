@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}DOCUMENTOS{% endblock %}
+
+{% block content %}
+<div class="container mt-4" style="max-width: 900px;">
+  <h2 class="text-center mb-4 ">📚 Documentos PDF Subidos</h2>
+
+  <a href="{{ url_for('documentos.subir_pdf') }}" class="btn btn-success mb-3">➕ Subir Nuevo</a>
+
+  <table class="table table-bordered table-striped text-center mx-auto">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Archivo</th>
+        <th>Material</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for doc in documentos %}
+      <tr>
+        <td>{{ doc.id_documento }}</td>
+        <td>{{ doc.nombre }}</td>
+        <td>{{ doc.material.titulo }}</td>
+        <td class="d-flex justify-content-center gap-2">
+          <a href="{{ url_for('static', filename='pdf/' + doc.nombre) }}" target="_blank" class="btn btn-primary btn-sm">Ver</a>
+          <a href="{{ url_for('documentos.editar', id=doc.id) }}" class="btn btn-warning btn-sm">Editar</a>
+          <form method="POST" action="{{ url_for('documentos.eliminar', id=doc.id) }}" style="display:inline;" onsubmit="return confirm('¿Eliminar este documento?');">
+            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+          </form>
+
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="4" class="text-center">No hay documentos subidos.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

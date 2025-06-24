@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} PRÉSTAMOS {% endblock %}
+
+{% block content %}
+<div class="container mt-4" style="max-width: 1100px;">
+    <h1 class="mb-4 text-center">Lista de Préstamos</h1>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <a href="{{ url_for('prestamo.create') }}" class="btn btn-success">➕ Nuevo Préstamo</a>
+
+        <div class="btn-group">
+            <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Generar Reporte
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="{{ url_for('reporte.excel_prestamos') }}">Exportar a Excel</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('reporte.pdf_prestamos') }}">Exportar a PDF</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <table class="table table-hover table-bordered text-center mx-auto">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Usuario</th>
+                <th>Bibliotecario</th>
+                <th>Material</th>
+                <th>F. Préstamo</th>
+                <th>F. Devolución</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in prestamos %}
+            <tr>
+                <td>{{ p.id_prestamo }}</td>
+                <td>{{ (usuarios | selectattr("id", "equalto", p.id_usuario) | first).nombre }}</td>
+                <td>{{ (usuarios | selectattr("id", "equalto", p.id_bibliotecario) | first).nombre }}</td>
+                <td>{{ (materiales | selectattr("id_material", "equalto", p.id_material) | first).titulo if (materiales | selectattr("id_material", "equalto", p.id_material) | first) else "No encontrado" }}</td>
+                <td>{{ p.fecha_prestamo }}</td>
+                <td>{{ p.fecha_devolucion }}</td>
+                <td>{{ p.estado }}</td>
+                <td class="d-flex justify-content-center gap-2">
+                    <a href="{{ url_for('prestamo.edit', id_prestamo=p.id_prestamo) }}" class="btn btn-sm btn-warning">Editar</a>
+                    <a href="{{ url_for('prestamo.delete', id_prestamo=p.id_prestamo) }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar este préstamo?')">Eliminar</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="8" class="text-center">No hay Préstamos registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

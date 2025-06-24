@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}BIBLIOTECARIOS{% endblock %}
+
+{% block content %}
+<div class="container mt-4" style="max-width: 900px;">
+  <h1 class="text-center mb-4">Lista de Bibliotecarios</h1>
+  <a href="{{ url_for('bibliotecario.create') }}" class="btn btn-success mb-3">➕ Nuevo Bibliotecario</a>
+
+  <table class="table table-striped table-bordered text-center mx-auto">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Turno</th>
+        <th>Fecha de contrato</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in bibliotecarios %}
+      <tr>
+        <td>{{ item.id_biblio }}</td>
+        <td>{{ item.usuario.nombre }} {{ item.usuario.apellido }}</td>
+        <td>{{ item.turno }}</td>
+        <td>{{ item.fecha_contratacion }}</td>
+        <td class="d-flex justify-content-center gap-2">
+          <a href="{{ url_for('bibliotecario.edit', id_biblio=item.id_biblio) }}" class="btn btn-warning btn-sm">Editar</a>
+          <a href="{{ url_for('bibliotecario.delete', id_biblio=item.id_biblio) }}"
+             class="btn btn-danger btn-sm"
+             onclick="return confirm('¿Estás seguro de que deseas eliminar al bibliotecario con ID {{ item.id_biblio }}?');">
+             Eliminar
+          </a>
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="5" class="text-center">No hay Bibliotecarios registrados.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

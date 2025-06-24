@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %} PROYECTOS ACADÉMICOS {% endblock %}
+
+{% block content %}
+<div class="container mt-4" style="max-width: 900px;">
+    <h1 class="mb-4 text-center">Lista de Proyectos Académicos</h1>
+    <div class="d-flex justify-content-center mb-3">
+        <a href="{{ url_for('proyecto.create') }}" class="btn btn-success mb-3">➕ Nuevo Proyecto Académico</a>
+    </div>
+    
+    <table class="table table-striped table-bordered text-center mx-auto">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Gestión</th>
+                <th>Modalidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in proyectos %}
+            <tr>
+                <td>{{ item.id_pro }}</td>
+                <td>{{ item.material.titulo }}</td>
+                <td>{{ item.autor }}</td>
+                <td>{{ item.gestion }}</td>
+                <td>{{ item.modalidad }}</td>
+                <td class="d-flex justify-content-center gap-2">
+                    <a href="{{ url_for('proyecto.edit', id_pro=item.id_pro) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{{ url_for('proyecto.delete', id_pro=item.id_pro) }}" 
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('¿Estás seguro de eliminar el proyecto académico {{ item.material.titulo }}?');">
+                       Eliminar
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" class="text-center">No hay Proyectos Académicos registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

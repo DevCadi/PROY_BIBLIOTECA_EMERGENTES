@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{%block title%} LIBROS {% endblock %}
+
+{% block content %}
+    <h1>Editar Libro</h1>
+    <form method="post">
+        <div class="mb-3 bg-white-glass">
+            <label class="form-label">ISBN</label>
+            <input type="number" name="isbn" class="form-control" value="{{ libro.isbn }}" required>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label class="form-label">N° de paginas</label>
+            <input type="number" name="nro_paginas" class="form-control" value="{{ libro.nro_paginas }}" required>
+        <div class="mb-3 bg-white-glass">
+            <label class="form-label">Titulo</label>
+            <select name="id_material" class="form-control" required>
+                <option value="">Seleccione un titulo:</option>
+                {% for material in materiales %}
+                    <option value="{{material.id_material}}"  {% if material.id_material== libro.id_libro %} selected {% endif %}>{{material.titulo}}({{ material.tipo }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label class="form-label">Editorial</label>
+            <select name="id_editorial" class="form-control" required>
+                <option value="">Seleccione una editorial:</option>
+                {% for editorial in editoriales %}
+                    <option value="{{ editorial.id_editorial }}"
+                        {% if libro.id_editorial == editorial.id_editorial %}selected{% endif %}>
+                        {{ editorial.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label class="form-label">Año de Publicación</label>
+            <input type="text" name="anio_publicacion" class="form-control" value="{{ libro.anio_publicacion }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <a href="{{ url_for('libro.index') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}

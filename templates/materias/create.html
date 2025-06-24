@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} MATERIA | CREATE {% endblock %}
+
+{% block content %}
+<h1>Registro de materias</h1>
+<form action="{{url_for('materia.create')}}" method="POST">
+    <div class="mb-3 bg-white-glass">
+        <label for="" class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="nombre" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar materia</button>
+</form>
+
+
+{% endblock %}

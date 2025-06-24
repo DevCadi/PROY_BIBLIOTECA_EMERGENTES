@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}MATERIALES{% endblock %}
+
+{% block content %}
+<div class="container mt-4" style="max-width: 1200px;">
+    <h1 class="text-center mb-4">📚 Materiales Registrados</h1>
+
+    <div class="d-flex justify-content-between mb-3">
+        <a href="{{ url_for('material.create') }}" class="btn btn-success">➕ Nuevo Material</a>
+        <div class="btn-group">
+            <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Generar Reporte
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ url_for('reporte.excel_materiales') }}">Exportar a Excel</a></li>
+                <li><a class="dropdown-item" href="{{ url_for('reporte.pdf_materiales') }}">Exportar a PDF</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped text-center mx-auto">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Título</th>
+                <th>Fecha Ingreso</th>
+                <th>Estado</th>
+                <th>Categoría</th>
+                <th>Autor</th>
+                <th>Materia</th>
+                <th>Donador</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mat in materiales %}
+            <tr>
+                <td>{{ mat.id_material }}</td>
+                <td>{{ mat.tipo }}</td>
+                <td>{{ mat.titulo }}</td>
+                <td>{{ mat.fecha_ingreso }}</td>
+                <td>{{ mat.estado }}</td>
+                <td>{{ mat.categoria.nombre }}</td>
+                <td>{{ mat.autor.nombre }}</td>
+                <td>{{ mat.materia.nombre }}</td>
+                <td>{{ mat.donador.nombre }}</td>
+                <td class="d-flex justify-content-center gap-2">
+                    <a href="{{ url_for('material.edit', id_material=mat.id_material) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <a href="{{ url_for('material.delete', id_material=mat.id_material) }}"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('¿Seguro que quieres eliminar este material?');">Eliminar</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr><td colspan="10" class="text-center">No hay materiales registrados.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

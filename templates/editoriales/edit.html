@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} EDITORIALES {% endblock %}
+
+{% block content %}
+<h1>Actualización de editoriales</h1>
+<form action="{{url_for('editorial.edit',id_editorial=editorial.id_editorial)}}" method="POST">
+    <div class="mb-3 bg-white-glass">
+        <label for="" class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="nombre" value="{{editorial.nombre}}" required>
+    </div>
+    <div class="mb-3 bg-white-glass">
+        <label for="" class="form-label">Dirección</label>
+        <input type="text" class="form-control" name="direccion" value="{{editorial.direccion}}" required>
+    </div>
+    <div class="mb-3 bg-white-glass">
+        <label for="" class="form-label">Teléfono</label>
+        <input type="text" class="form-control" name="telefono" value="{{editorial.telefono}}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar editoriales</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}MATERIAS{% endblock %}
+
+{% block content %}
+<div class="container mt-4" style="max-width: 800px;">
+  <h1 class="text-center mb-4">Lista de Materias</h1>
+  <a href="{{ url_for('materia.create') }}" class="btn btn-success mb-3">➕ Nueva Materia</a>
+
+  <table class="table table-striped table-bordered text-center mx-auto">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in materias %}
+      <tr>
+        <td>{{ item.id_materia }}</td>
+        <td>{{ item.nombre }}</td>
+        <td>
+          <a href="{{ url_for('materia.edit', id_materia=item.id_materia) }}" class="btn btn-warning btn-sm me-1">Editar</a>
+          <a href="{{ url_for('materia.delete', id_materia=item.id_materia) }}" 
+             class="btn btn-danger btn-sm"
+             onclick="return confirm('¿Estás seguro de que deseas eliminar la materia {{ item.nombre }}?');">
+            Eliminar
+          </a>
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="3" class="text-center">No hay materias registradas.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

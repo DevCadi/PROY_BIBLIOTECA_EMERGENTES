@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} MATERIA | EDIT {% endblock %}
+
+{% block content %}
+<h1>Actualización de materia</h1>
+<form action="{{url_for('materia.edit',id_materia=materia.id_materia)}}" method="POST">
+    <div class="mb-3 bg-white-glass">
+        <label for="" class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="nombre" value="{{materia.nombre}}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar materia</button>
+</form>
+
+
+{% endblock %}

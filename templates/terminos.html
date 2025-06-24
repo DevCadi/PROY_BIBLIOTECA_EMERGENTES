@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Términos y Condiciones{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-light">
+  <h1 class="text-info mb-4">📜 Términos y Condiciones de Uso</h1>
+  <p>Bienvenido a la Biblioteca Virtual. Al acceder y utilizar nuestros servicios, aceptas las siguientes condiciones:</p>
+
+  <h4 class="text-warning mt-4">1. Uso del Servicio</h4>
+  <ul>
+    <li>Este sitio está destinado únicamente para fines académicos, educativos y de investigación.</li>
+    <li>No está permitido distribuir el contenido sin autorización previa por escrito.</li>
+    <li>El acceso está limitado a usuarios registrados y autorizados.</li>
+  </ul>
+
+  <h4 class="text-warning mt-4">2. Cuenta de Usuario</h4>
+  <ul>
+    <li>Las cuentas son personales e intransferibles.</li>
+    <li>El usuario es responsable de mantener la confidencialidad de su contraseña.</li>
+    <li>El uso indebido o fraudulento de la cuenta puede ser sancionado con suspensión o eliminación.</li>
+  </ul>
+
+  <h4 class="text-warning mt-4">3. Préstamos y Reservas</h4>
+  <ul>
+    <li>Los materiales digitales tienen un tiempo de préstamo determinado. El incumplimiento puede afectar tu historial.</li>
+    <li>El sistema registra todas las solicitudes y actividades de préstamo.</li>
+    <li>La Biblioteca se reserva el derecho de denegar préstamos si detecta mal uso.</li>
+  </ul>
+
+  <h4 class="text-warning mt-4">4. Propiedad Intelectual</h4>
+  <ul>
+    <li>Todo el contenido alojado (libros, documentos, videos, audios) está protegido por derechos de autor.</li>
+    <li>Está prohibida su reproducción parcial o total sin autorización.</li>
+  </ul>
+
+  <h4 class="text-warning mt-4">5. Cambios en los Términos</h4>
+  <p>Nos reservamos el derecho de modificar estos términos sin previo aviso. Recomendamos revisar esta sección regularmente.</p>
+
+  <p class="mt-4">Si tienes dudas, puedes comunicarte con nosotros a través de la sección <a href="{{ url_for('contacto') }}" class="text-info">Contacto</a>.</p>
+</div>
+{% endblock %}

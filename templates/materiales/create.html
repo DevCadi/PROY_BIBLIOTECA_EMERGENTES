@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{%block title%} LIBROS {% endblock %}
+
+{% block content %}
+
+    <h1>Nuevo Material</h1>
+    <form method="post">
+        <div class="mb-3 bg-white-glass">
+            <label>Tipo</label>
+            <input type="text" name="tipo" class="form-control" required>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label>Título</label>
+            <input type="text" name="titulo" class="form-control" required>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label>Fecha de Ingreso</label>
+            <input type="date" name="fecha_ingreso" class="form-control" required>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label for="estado" class="form-label">Estado</label>
+            <select name="estado" class="form-select" required>
+                <option value="Usado">Usado</option>
+                <option value="Regular">Regular</option>
+                <option value="Bueno">Bueno</option>
+                <option value="Muy bien">Muy bien</option>
+                <option value="Nuevo">Nuevo</option>
+            </select>
+        </div>
+
+        <div class="mb-3 bg-white-glass">
+            <label>Categoría</label>
+            <select name="id_categoria" class="form-control" required>
+                <option value="">Seleccione una categoría:</option>
+                {% for categoria in categorias %}
+                    <option value="{{categoria.id_cat}}">{{categoria.nombre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label>Autor</label>
+            <select name="id_autor" class="form-control" required>
+                <option value="">Seleccione un autor:</option>
+                {% for autor in autores %}
+                    <option value="{{autor.id_autor}}">{{autor.nombre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label>Materia</label>
+            <select name="id_materia" class="form-control" required>
+                <option value="">Seleccione una materia:</option>
+                {% for materia in materias %}
+                    <option value="{{materia.id_materia}}">{{materia.nombre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label>Donador</label>
+            <select name="id_donador" class="form-control" required>
+                <option value="">Seleccione un donador:</option>
+                {% for donador in donadores %}
+                    <option value="{{donador.id_donador}}">{{donador.nombre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a href="{{ url_for('material.index') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}

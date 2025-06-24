@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} DONADORES {% endblock %}
+
+{% block content %}
+  <h1>✏️ Editar Donador</h1>
+  <form method="POST">
+    <div class="mb-3 bg-white-glass">
+      <label class="form-label">Nombre</label>
+      <input type="text" name="nombre" value="{{ donador.nombre }}" class="form-control" required>
+    </div>
+    <div class="mb-3 bg-white-glass">
+      <label class="form-label">Apellido</label>
+      <input type="text" name="apellido" value="{{ donador.apellido }}" class="form-control" required>
+    </div>
+    <div class="mb-3 bg-white-glass">
+      <label class="form-label">Teléfono</label>
+      <input type="text" name="telefono" value="{{ donador.telefono }}" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a href="{{ url_for('donador.index') }}" class="btn btn-secondary">Cancelar</a>
+  </form>
+
+{% endblock %}

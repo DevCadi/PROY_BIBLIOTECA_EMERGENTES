@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %} LIBROS {% endblock %}
+
+{% block content %}
+<div class="container mt-4" style="max-width: 1000px;">
+  <h1 class="text-center mb-4">Lista de Libros</h1>
+
+  <div class="d-flex justify-content-between mb-3">
+    <a href="{{ url_for('libro.create') }}" class="btn btn-success">➕ Agregar Nuevo Libro</a>
+
+    <div class="btn-group">
+      <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Generar Reporte
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{{ url_for('reporte.excel_libros') }}">📊 Exportar a Excel</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('reporte.pdf_libros') }}">📄 Exportar a PDF</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-striped text-center mx-auto">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>ISBN</th>
+        <th>N° de Páginas</th>
+        <th>Título</th>
+        <th>Editorial</th>
+        <th>Año Publicación</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for libro in libros %}
+      <tr>
+        <td>{{ libro.id_libro }}</td>
+        <td>{{ libro.isbn }}</td>
+        <td>{{ libro.nro_paginas }}</td>
+        <td>{{ libro.material.titulo }}</td>
+        <td>{{ libro.editorial.nombre if libro.editorial else libro.id_editorial }}</td>
+        <td>{{ libro.anio_publicacion }}</td>
+        <td class="d-flex justify-content-center gap-2">
+          <a href="{{ url_for('libro.edit', id_libro=libro.id_libro) }}" class="btn btn-warning btn-sm">Editar</a>
+          <a href="{{ url_for('libro.delete', id_libro=libro.id_libro) }}" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este libro?')">Eliminar</a>
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="7" class="text-center">No hay libros registrados.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

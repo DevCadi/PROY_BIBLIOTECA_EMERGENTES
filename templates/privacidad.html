@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Política de Privacidad{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-light">
+  <h1 class="text-info mb-4">🔐 Política de Privacidad</h1>
+  <p>Tu privacidad es muy importante para nosotros. Esta política explica cómo recopilamos, usamos y protegemos tu información en nuestra Biblioteca Virtual.</p>
+
+  <h4 class="text-success mt-4">1. Información que Recopilamos</h4>
+  <ul>
+    <li>Datos personales: nombre, correo electrónico, teléfono y carrera.</li>
+    <li>Información académica: historial de préstamos, intereses de lectura.</li>
+    <li>Actividad del usuario: búsquedas, visitas y descargas de materiales.</li>
+  </ul>
+
+  <h4 class="text-success mt-4">2. Uso de la Información</h4>
+  <ul>
+    <li>Mejorar el servicio de recomendaciones de materiales.</li>
+    <li>Enviar notificaciones sobre renovaciones, eventos y novedades.</li>
+    <li>Analizar el uso de la biblioteca para optimizar recursos educativos.</li>
+  </ul>
+
+  <h4 class="text-success mt-4">3. Seguridad</h4>
+  <ul>
+    <li>La información se almacena en servidores protegidos.</li>
+    <li>No compartimos datos con terceros sin tu consentimiento.</li>
+    <li>Aplicamos medidas técnicas para evitar accesos no autorizados.</li>
+  </ul>
+
+  <h4 class="text-success mt-4">4. Derechos del Usuario</h4>
+  <ul>
+    <li>Acceder, corregir o eliminar tus datos personales bajo solicitud.</li>
+    <li>Solicitar que no se utilicen tus datos con fines estadísticos.</li>
+  </ul>
+
+  <h4 class="text-success mt-4">5. Cambios en la Política</h4>
+  <p>Podemos actualizar esta política en cualquier momento. Si se realizan cambios importantes, te lo notificaremos vía correo electrónico o en la plataforma.</p>
+
+  <p class="mt-4">Para más detalles o solicitudes, por favor visita la sección <a href="{{ url_for('contacto') }}" class="text-info">Contacto</a>.</p>
+</div>
+{% endblock %}

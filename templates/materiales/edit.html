@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{%block title%} LIBROS {% endblock %}
+
+{% block content %}
+
+    <h1>Editar Material</h1>
+    <form method="post">
+        <div class="mb-3 bg-white-glass">
+            <label>Tipo</label>
+            <input type="text" name="tipo" class="form-control" value="{{ material.tipo }}" required>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label>Título</label>
+            <input type="text" name="titulo" class="form-control" value="{{ material.titulo }}" required>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label>Fecha de Ingreso</label>
+            <input type="date" name="fecha_ingreso" class="form-control" value="{{ material.fecha_ingreso }}" required>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label class="form-label">Estado</label>
+            <select name="estado" class="form-select" required>
+                <option value="Usado" {% if material.estado == 'Usado' %}selected{% endif %}>Usado</option>
+                <option value="Regular" {% if material.estado == 'Regular' %}selected{% endif %}>Regular</option>
+                <option value="Bueno" {% if material.estado == 'Bueno' %}selected{% endif %}>Bueno</option>
+                <option value="Muy bien" {% if material.estado == 'Muy bien' %}selected{% endif %}>Muy bien</option>
+                <option value="Nuevo" {% if material.estado == 'Nuevo' %}selected{% endif %}>Nuevo</option>
+            </select>
+        </div>
+
+        <div class="mb-3 bg-white-glass">
+            <label>Categoría</label>
+            <select name="id_categoria" class="form-control" required>
+                <option value="">Seleccione una categoría:</option>
+                {% for categoria in categorias %}
+                    <option value="{{categoria.id_cat}}"  {% if categoria.id_cat== material.id_categoria %} selected {% endif %}>{{categoria.nombre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label>Autor</label>
+            <select name="id_autor" class="form-control" required>
+                <option value="">Seleccione un autor:</option>
+                {% for autor in autores %}
+                    <option value="{{autor.id_autor}}"  {% if autor.id_autor== material.id_autor %} selected {% endif %}>{{autor.nombre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label>Materia</label>
+            <select name="id_materia" class="form-control" required>
+                <option value="">Seleccione una materia:</option>
+                {% for materia in materias %}
+                    <option value="{{materia.id_materia}}"  {% if materia.id_materia== material.id_materia %} selected {% endif %}>{{materia.nombre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3 bg-white-glass">
+            <label>Donador</label>
+            <select name="id_donador" class="form-control" required>
+                <option value="">Seleccione un donador:</option>
+                {% for donador in donadores %}
+                    <option value="{{donador.id_donador}}"  {% if donador.id_donador == material.id_donador %} selected {% endif %}>{{donador.nombre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <a href="{{ url_for('material.index') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}

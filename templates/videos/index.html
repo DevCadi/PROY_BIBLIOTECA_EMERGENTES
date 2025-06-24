@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %} VIDEOS {% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4 text-center" >Lista de Videos</h1>
+
+<div class="d-flex justify-content-center mb-3">
+  <a href="{{ url_for('video.create') }}" class="btn btn-success">➕ Nuevo Video</a>
+</div>
+
+<div class="d-flex justify-content-center">
+  <table class="table table-striped table-bordered text-center" style="max-width: 900px; width: 100%;">
+      <thead class="table-dark">
+          <tr>
+              <th>ID</th>
+              <th>Título</th>
+              <th>Duración</th>
+              <th>Formato</th>
+              <th>Acciones</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for item in videos %}
+          <tr>
+              <td>{{ item.id_video }}</td>
+              <td>{{ item.material.titulo }}</td>
+              <td>{{ item.duracion }}</td>
+              <td>{{ item.formato }}</td>
+              <td class="d-flex justify-content-center gap-2">
+                  <a href="{{ url_for('video.edit', id_video=item.id_video) }}" class="btn btn-warning btn-sm">Editar</a>
+                  <a href="{{ url_for('video.delete', id_video=item.id_video) }}" 
+                     class="btn btn-danger btn-sm" 
+                     onclick="return confirm('¿Estás seguro de eliminar el video {{ item.material.titulo }}?');">
+                     Eliminar
+                  </a>
+              </td>
+          </tr>
+          {% else %}
+          <tr>
+              <td colspan="5" class="text-center">No hay Videos registrados.</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
+
+{% endblock %}

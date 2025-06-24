@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}AUTORES{% endblock %}
+
+{% block content %}
+<div class="container mt-4" style="max-width: 900px;">
+  <h1 class="text-center mb-4">Lista de Autores</h1>
+
+  <div class="d-flex justify-content-between mb-3">
+    <a href="{{ url_for('autores.create') }}" class="btn btn-success">➕ Nuevo Autor</a>
+
+    <div class="btn-group">
+      <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Generar Reporte
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{{ url_for('reporte.excel_autores') }}">Exportar a Excel</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('reporte.pdf_autores') }}">Exportar a PDF</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <table class="table table-striped table-bordered text-center mx-auto">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Nacionalidad</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in autores %}
+      <tr>
+        <td>{{ item.id_autor }}</td>
+        <td>{{ item.nombre }}</td>
+        <td>{{ item.apellidos }}</td>
+        <td>{{ item.nacionalidad }}</td>
+        <td class="d-flex justify-content-center gap-2">
+          <a href="{{ url_for('autores.edit', id_autor=item.id_autor) }}" class="btn btn-warning btn-sm">Editar</a>
+          <a href="{{ url_for('autores.delete', id_autor=item.id_autor) }}" class="btn btn-danger btn-sm"
+             onclick="return confirm('¿Estás seguro de eliminar este autor?');">
+             Eliminar
+          </a>
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="5" class="text-center">No hay Autores registrados.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

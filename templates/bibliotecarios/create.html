@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} BIBLIOTECARIOS {% endblock %}
+
+{% block content %}
+<h1>Registro de Bibliotecarios</h1>
+
+<form action="{{ url_for('bibliotecario.create') }}" method="POST">
+    <div class="mb-3 bg-white-glass">
+        <label for="id_usuario" class="form-label">Nombre del Usuario</label>
+        <select class="form-control" name="id_usuario" required>
+            <option value="">Seleccione un usuario</option>
+            {% for usuario in usuarios %}
+                <option value="{{ usuario.id }}">{{ usuario.nombre }} {{ usuario.apellido }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3 bg-white-glass">
+        <label for="turno" class="form-label">Turno</label>
+        <input type="text" class="form-control" name="turno" required>
+    </div>
+
+    <div class="mb-3 bg-white-glass">
+        <label for="fecha_contratacion" class="form-label">Fecha de Contratación</label>
+        <input type="date" class="form-control" name="fecha_contratacion" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrar Bibliotecario</button>
+    <a href="{{ url_for('bibliotecario.index') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

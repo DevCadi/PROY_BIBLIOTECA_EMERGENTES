@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} EDITORIALES | CREATE {% endblock %}
+
+{% block content %}
+<h1>Registro de editoriales</h1>
+<form action="{{url_for('editorial.create')}}" method="POST">
+    <div class="mb-3 bg-white-glass">
+        <label for="" class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="nombre" required>
+    </div>
+    <div class="mb-3 bg-white-glass">
+        <label for="" class="form-label">Dirección</label>
+        <input type="text" class="form-control" name="direccion" required>
+    </div>
+    <div class="mb-3 bg-white-glass">
+        <label for="" class="form-label">Teléfono</label>
+        <input type="text" class="form-control" name="telefono" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar editorial</button>
+</form>
+{% endblock %}

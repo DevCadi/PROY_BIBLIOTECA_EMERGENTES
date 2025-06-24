@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-light">
+  <h1 class="text-info">Contáctanos</h1>
+  <form method="POST" action="/contacto/enviar">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" name="nombre" required>
+    </div>
+    <div class="mb-3">
+      <label for="correo" class="form-label">Correo electrónico</label>
+      <input type="email" class="form-control" name="correo" required>
+    </div>
+    <div class="mb-3">
+      <label for="mensaje" class="form-label">Mensaje</label>
+      <textarea class="form-control" name="mensaje" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-info">Enviar mensaje</button>
+  </form>
+</div>
+{% endblock %}
