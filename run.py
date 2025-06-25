@@ -104,6 +104,14 @@ def crear_admin_inicial():
 def carrera():
     return render_template('carrera.html')
 
+@app.route('/juego')
+def juego():
+    return render_template('juego.html')
+
+@app.route('/ubicacion')
+def ubicacion():
+    return render_template('ubicacion.html')
+
 @app.route('/terminos')
 def terminos():
     return render_template('terminos.html')
