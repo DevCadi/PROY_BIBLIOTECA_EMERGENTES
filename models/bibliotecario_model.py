@@ -11,6 +11,7 @@ class Bibliotecario(db.Model):
     # Relación con Usuario
     id_usuario = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
     usuario = db.relationship('Usuario', backref=db.backref('bibliotecario', uselist=False))
+    
 
     def __init__(self, turno, fecha_contratacion, id_usuario):
         self.turno = turno

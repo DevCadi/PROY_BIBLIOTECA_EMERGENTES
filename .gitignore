@@ -1,8 +1,2 @@
-.env 
-instance/
-*.db
-
 venv/
-
-__pycache__/
-*.pyc
+instace/biblioteca.db

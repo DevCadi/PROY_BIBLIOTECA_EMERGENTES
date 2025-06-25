@@ -148,31 +148,10 @@
         </div>
       </div>
     </div>
-    <!-- Wrapper general para centrar todo el dashboard -->
-<div class="d-flex flex-column align-items-center justify-content-center w-100" style="padding: 2rem; min-height: 100vh;">
+
   
   {% if session.get('usuario_nombre') %}
-    <!-- Título y bienvenida -->
-    <div class="text-center mb-4">
-      <h2 style="color: #f1f5f4; text-shadow: 0 0 6px #00ffea; font-size: 3rem;">Sistema Bibliotecario Carrera Ingenieria de Sistemas</h2>
-      <h2 style="color: #00ffea; text-shadow: 0 0 6px #00ffea; font-size: 3rem;">Bienvenido, {{ session['usuario_nombre'] }}</h2>
-    </div>
 
-    <!-- Tarjetas -->
-    <div class="row w-100 justify-content-center mb-4" style="max-width: 1000px;">
-      <div class="col-md-6 mb-3">
-        <div class="card text-bg-dark border-success shadow text-center p-3">
-          <h5 class="card-title">Usuarios Lectores</h5>
-          <p class="card-text display-4" id="contador-lectores">0</p>
-        </div>
-      </div>
-      <div class="col-md-6 mb-3">
-        <div class="card text-bg-dark border-info shadow text-center p-3">
-          <h5 class="card-title">Préstamos Totales</h5>
-          <p class="card-text display-4" id="contador-prestamos">0</p>
-        </div>
-      </div>
-    </div>
 
 <script>
     function animarContador(id, valorFinal) {

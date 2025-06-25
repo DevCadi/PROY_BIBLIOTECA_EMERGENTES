@@ -16,6 +16,7 @@ class Prestamo(db.Model):
     bibliotecario = db.relationship("Bibliotecario", backref="prestamos")
     material = db.relationship("Material", backref="prestamos")  
 
+
     def __init__(self, id_usuario, id_bibliotecario, id_material, fecha_prestamo, fecha_devolucion, estado):
         self.id_usuario = id_usuario
         self.id_bibliotecario = id_bibliotecario
@@ -54,11 +55,22 @@ class Prestamo(db.Model):
         return {
             'id_prestamo': self.id_prestamo,
             'usuario': self.usuario.nombre if self.usuario else "Desconocido",
-            'bibliotecario': self.bibliotecario.nombre if self.bibliotecario else "Desconocido",
+            'bibliotecario': self.bibliotecario.usuario.nombre if self.bibliotecario else "Desconocido",
             'material': self.material.titulo if self.material else "Desconocido",
             'fecha_prestamo': str(self.fecha_prestamo),
             'fecha_devolucion': str(self.fecha_devolucion),
             'estado': self.estado
         }
+
+
+
+
+
+
+
+
+
+
+
 
 
